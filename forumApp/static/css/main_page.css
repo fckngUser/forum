@@ -25,8 +25,8 @@ h1 {
     padding: 25px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden; /* Добавлено для ограничения контента */
-    word-wrap: break-word; /* Перенос длинных слов */
+    overflow: hidden; 
+    word-wrap: break-word; 
 }
 
 .article-item:hover {
