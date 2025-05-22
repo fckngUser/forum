@@ -1,67 +1,88 @@
-:root {
-    --primary-color: #3498db;
-    --secondary-color: #2980b9;
-    --text-color: #333;
-    --light-color: #f5f5f5;
-    --dark-color: #2c3e50;
-    --border-radius: 4px;
-    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s ease;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--light-color);
-    padding: 0;
-    margin: 0;
-}
-
-nav {
-    background-color: var(--dark-color);
+/* Навигационная панель */
+.navbar {
+    background-color: #2c3e50;
     padding: 1rem 2rem;
-    box-shadow: var(--box-shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-nav a {
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 2rem;
+}
+
+.navbar a {
     color: white;
     text-decoration: none;
-    margin: 0 10px;
-    font-weight: 500;
-    padding: 5px 10px;
-    border-radius: var(--border-radius);
-    transition: var(--transition);
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s;
 }
 
-nav a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+.navbar a:hover {
+    color: #3498db;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 2rem;
+/* Стили для профиля */
+.nav-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-@media (max-width: 768px) {
-    nav {
-        padding: 1rem;
-        text-align: center;
-    }
+.avatar, .avatar-default {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
 
-    nav a {
-        display: inline-block;
-        margin: 5px;
-    }
+.avatar {
+    object-fit: cover;
+}
 
-    .container {
-        padding: 0 1rem;
-    }
+/* Кнопки входа/выхода */
+.nav-login, .nav-register, .nav-logout {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.nav-login {
+    background-color: transparent;
+    border: 1px solid #3498db;
+}
+
+.nav-register {
+    background-color: #3498db;
+}
+
+.nav-logout {
+    background-color: #e74c3c;
+}
+
+.nav-login:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.nav-register:hover {
+    background-color: #2980b9;
+}
+
+.nav-logout:hover {
+    background-color: #c0392b;
 }

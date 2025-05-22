@@ -1,29 +1,42 @@
-{% load static %}  <!-- Добавьте эту строку в самом начале файла -->
+{% load static %}
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title>{% block title %}Мой блог{% endblock %}</title>
-    
-    <!-- Базовые стили можно подключить здесь -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <nav>
-        <a href="/">Главная</a>
-        <a href="/create/">Создать статью</a>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="/">Главная</a>
+            <a href="/create/">Создать статью</a>
+        </div>
+        <div class="nav-right">
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="nav-profile">
+                    <span>{{ user.username }}</span>
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.url }}" alt="Аватар" class="avatar">
+                    {% else %}
+                        <div class="avatar-default">{{ user.username|first|upper }}</div>
+                    {% endif %}
+                </a>
+                <a href="{% url 'logout' %}" class="nav-logout">Выйти</a>
+            {% else %}
+                <a href="/login/" class="nav-login">Войти</a>
+                <a href="#" class="nav-register">Регистрация</a>
+            {% endif %}
+        </div>
     </nav>
     
     <div class="container">
         {% block content %}{% endblock %}
     </div>
-    
-    <!-- Базовые скрипты можно подключить здесь -->
+
     <script src="{% static 'js/base.js' %}"></script>
-    
     {% block extra_js %}{% endblock %}
 </body>
 </html>

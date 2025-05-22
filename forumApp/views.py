@@ -15,3 +15,7 @@ def create_article_page(request):
             return redirect("/")
     
     return render(request, 'create_article.html')
+
+def login_page(request):
+    context = {}
+    return render(request, "registration/login.html", context)
