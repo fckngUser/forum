@@ -1,0 +1,84 @@
+.articles-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+.articles-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.article-item {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Добавлено для ограничения контента */
+    word-wrap: break-word; /* Перенос длинных слов */
+}
+
+.article-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.article-item h3 {
+    color: #3498db;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    word-break: break-word; 
+}
+
+.article-item p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    max-height: 4.8em; 
+}
+
+.empty-message {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.2rem;
+    grid-column: 1 / -1;
+    padding: 40px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .articles-list {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .article-item {
+        padding: 15px;
+    }
+}
+
+.article-item p {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}

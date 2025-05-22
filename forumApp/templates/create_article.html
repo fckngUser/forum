@@ -1,23 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Создать статью</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Создать статью{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/create_articles.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="create-article-container">
     <h1>Создать новую статью</h1>
-    <form method="POST">
+    <form method="POST" class="article-form">
         {% csrf_token %}
-        <div>
-            <label>Название:</label>
-            <input type="text" name="name" required>
+        <div class="form-group">
+            <label class="form-label">Название:</label>
+            <input type="text" name="name" class="form-input" required>
         </div>
-        <div>
-            <label>Содержание:</label>
-            <textarea name="content" required></textarea>
+        <div class="form-group">
+            <label class="form-label">Содержание:</label>
+            <textarea name="content" class="form-textarea" required></textarea>
         </div>
-        <button type="submit">Создать</button>
+        <button type="submit" class="submit-btn">Создать</button>
     </form>
-    <a href="/">Назад к списку</a>
-</body>
-</html>
+    <a href="/" class="back-link">Назад к списку</a>
+</div>
+{% endblock %}
