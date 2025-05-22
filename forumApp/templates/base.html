@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Мой блог{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Главная</a> |
+        <a href="/create/">Создать статью</a>
+    </nav>
+    
+    {% block content %}{% endblock %}
+</body>
+</html>
