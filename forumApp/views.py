@@ -59,7 +59,7 @@ def register_page(request):
                 user = User.objects.create_user(username=username, password=password)
                 user.save()
                 login(request, user)
-                return redirect('home')
+                return redirect('create_article')
             except:
                 messages.error(request, 'Username already exists')
                 
