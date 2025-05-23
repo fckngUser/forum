@@ -3,28 +3,27 @@
 {% block title %}Вход{% endblock %}
 
 {% block content %}
-<div class="auth-container">
-    <h2>Вход в аккаунт</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        
-        <div class="form-group">
-            <label class="form-label">почта:</label>
-            <input type="text" name="name" class="form-input" required>
-        </div>
 
-        <div class="form-group">
-            <label class="form-label">пароль:</label>
-            <input type="text" name="name" class="form-input" required>
-        </div>
+<form method="POST"> 
+{% csrf_token %}
+    <br>
+    <div>
+        <label>имя</label>
+        <input type="text" name="username" required>
+    </div>
+    <br>
 
-        <div class="form-group">
-            <label class="form-label">подтвердите пароль:</label>
-            <input type="text" name="name" class="form-input" required>
-        </div>
+    <div>
+        <label>пароль</label>
+        <input type="text" name="password" required>
+    </div>
+    <br>
 
-        <button type="submit" class="auth-button">Войти</button>
-    </form>
-</div>
+    <div>
+        <button type="submit">login</button>
+    </div>
+    <br>
+
+</form>
+
 {% endblock %}
