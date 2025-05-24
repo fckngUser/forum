@@ -1,6 +1,9 @@
-document.querySelectorAll('.article-item p').forEach(p => {
-    p.addEventListener('click', () => {
-        p.style.webkitLineClamp = 'unset';
-        p.style.maxHeight = 'none';
+document.addEventListener('DOMContentLoaded', function() {
+    const articleTexts = document.querySelectorAll('.article-item p');
+    
+    articleTexts.forEach(text => {
+        text.addEventListener('click', function() {
+            this.classList.toggle('expanded');
+        });
     });
 });

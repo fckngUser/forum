@@ -70,4 +70,5 @@ def register_page(request):
 
 
 def profile_page(request):
-    return render(request, 'profile.html')
+    context = { 'username': request.user.username, }
+    return render(request, 'profile.html', context)
