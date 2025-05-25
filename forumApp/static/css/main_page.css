@@ -52,7 +52,7 @@ h1 {
     transition: all 0.3s ease;
 }
 
-/* Класс для развернутого текста */
+
 .article-item p.expanded {
     -webkit-line-clamp: unset;
     max-height: none;

@@ -3,8 +3,6 @@ from forumApp.models import Articles
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-
 
 
 
@@ -72,9 +70,8 @@ def register_page(request):
 
 def profile_page(request):
     if not request.user.is_authenticated:
-        return redirect('login')  # или другая страница для неавторизованных
+        return redirect('login')  
     
-    # Получаем все статьи текущего пользователя
     user_articles = Articles.objects.filter(author=request.user).order_by('-id')
     
     context = {
@@ -83,19 +80,21 @@ def profile_page(request):
     }
     return render(request, 'profile.html', context)
 
+
+
 def article_delete(request, article_id):
     if request.method == 'POST':
         try:
             article = Articles.objects.get(id=article_id, author=request.user)
             article.delete()
         except Articles.DoesNotExist:
-            pass  # Статья не найдена или пользователь не автор
+            pass  
     return redirect('profile')
 
 
 
 def article_edit(request, article_id):
-    article = get_object_or_404(Articles, id=article_id, author=request.user)  # Только автор может редактировать
+    article = get_object_or_404(Articles, id=article_id, author=request.user)  
     
     if request.method == 'POST':
         article.name = request.POST.get('title')

@@ -1,4 +1,3 @@
-/* header.css */
 .navbar {
     background-color: #293133;
     color: white;
@@ -42,7 +41,6 @@
     color: #ccc;
 }
 
-/* Стили для аватарки пользователя */
 .nav-profile {
     display: flex;
     align-items: center;
@@ -85,7 +83,6 @@
     transition: transform 0.3s ease;
 }
 
-/* Dropdown меню */
 .dropdown {
     position: relative;
 }
@@ -135,7 +132,6 @@
     text-align: center;
 }
 
-/* Кнопки входа/регистрации */
 .nav-btn {
     padding: 0.5rem 1rem;
     border-radius: 4px;

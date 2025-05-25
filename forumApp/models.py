@@ -10,7 +10,7 @@ class Articles(models.Model):
         on_delete=models.CASCADE,
         default=1  
     )
-    created_at = models.DateTimeField(default=timezone.now)  # Добавляем поле даты создания
+    created_at = models.DateTimeField(default=timezone.now)  
     
     def __str__(self):
         return self.name
