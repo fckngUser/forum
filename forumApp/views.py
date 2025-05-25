@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from forumApp.models import Articles
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -19,7 +20,7 @@ def create_article_page(request):
         content = request.POST.get("content")  
         
         if name and content:  
-            Articles.objects.create(name=name, content=content)
+            Articles.objects.create(name=name, content=content, author=request.user)
             return redirect("/")
     
     return render(request, 'create_article.html')
@@ -70,5 +71,36 @@ def register_page(request):
 
 
 def profile_page(request):
-    context = { 'username': request.user.username, }
+    if not request.user.is_authenticated:
+        return redirect('login')  # или другая страница для неавторизованных
+    
+    # Получаем все статьи текущего пользователя
+    user_articles = Articles.objects.filter(author=request.user).order_by('-id')
+    
+    context = {
+        'user': request.user,
+        'user_articles': user_articles,
+    }
     return render(request, 'profile.html', context)
+
+def article_delete(request, article_id):
+    if request.method == 'POST':
+        try:
+            article = Articles.objects.get(id=article_id, author=request.user)
+            article.delete()
+        except Articles.DoesNotExist:
+            pass  # Статья не найдена или пользователь не автор
+    return redirect('profile')
+
+
+
+def article_edit(request, article_id):
+    article = get_object_or_404(Articles, id=article_id, author=request.user)  # Только автор может редактировать
+    
+    if request.method == 'POST':
+        article.name = request.POST.get('title')
+        article.content = request.POST.get('content')
+        article.save()
+        return redirect('profile')
+    
+    return render(request, 'edit_article.html', {'article': article})

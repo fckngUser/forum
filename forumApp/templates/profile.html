@@ -1,26 +1,45 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}профиль{% endblock %}
+{% block title %}Профиль{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профиль</title>
-</head>
-<body>
-    <div class="profile">
-        <img src="https://via.placeholder.com/150" alt="Фото профиля" class="profile-pic">
-        <div class="profile-name">{{ full_name|default:username }}</div>
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-avatar">
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" alt="Аватар" class="avatar-img">
+            {% else %}
+                <div class="avatar-default">{{ user.username|first|upper }}</div>
+            {% endif %}
+        </div>
+        <h1 class="profile-name">{{ user.get_full_name|default:user.username }}</h1>
     </div>
-</body>
-</html>
 
+    <div class="profile-articles">
+        <h2>Мои статьи</h2>
+        <div class="articles-list">
+            {% for article in user_articles %}
+            <div class="article-card">
+                <h3 class="article-title">{{ article.name }}</h3>
+                <p class="article-date">{{ article.created_at|date:"d.m.Y H:i" }}</p>
+                <div class="article-actions">
+                    <form action="{% url 'article_delete' article.id %}" method="post" class="delete-form">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-btn" onclick="return confirm('Вы уверены, что хотите удалить эту статью?')">
+                            Удалить
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% empty %}
+            <p class="no-articles">У вас пока нет статей</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,0 +1,28 @@
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+{% endblock %}
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <a href="/" class="footer-logo"><i class="fas fa-book-open"></i> FORUM</a>
+            <p class="footer-copyright">© 2023 Мой блог. Все права защищены.</p>
+        </div>
+        <div class="footer-right">
+            <div class="footer-links">
+                <h3 class="footer-title">Навигация</h3>
+                <a href="/" class="footer-link"><i class="fas fa-home"></i> Главная</a>
+                <a href="/about/" class="footer-link"><i class="fas fa-info-circle"></i> О нас</a>
+                <a href="/contact/" class="footer-link"><i class="fas fa-envelope"></i> Контакты</a>
+            </div>
+            <div class="footer-links">
+                <h3 class="footer-title">Соцсети</h3>
+                <a href="#" class="footer-link"><i class="fab fa-vk"></i> ВКонтакте</a>
+                <a href="#" class="footer-link"><i class="fab fa-telegram"></i> Telegram</a>
+                <a href="#" class="footer-link"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,125 @@
+/* header.css */
+.navbar {
+    background-color: #293133;
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-logo, .nav-link, .nav-btn, .nav-profile {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+}
+
+.nav-link:hover, .nav-btn:hover, .nav-profile:hover {
+    color: #666;
+}
+
+.nav-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid white;
+}
+
+.nav-login {
+    background-color: transparent;
+}
+
+.nav-register {
+    background-color: #333;
+    color: white;
+    border: none;
+}
+
+.avatar-container {
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.avatar-default {
+    font-weight: bold;
+    color: #000;
+}
+
+.username {
+    margin-left: 0.5rem;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    color: #000;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    min-width: 160px;
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+.dropdown-menu a {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #000;
+    transition: background 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+.nav-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
