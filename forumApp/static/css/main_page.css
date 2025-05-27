@@ -58,17 +58,20 @@ h1 {
     transition: max-height 0.3s ease;
     padding: 0 10px;
 }
-
 .article-text {
     color: #555;
     line-height: 1.6;
     padding: 10px 0;
     margin: 0;
+    white-space: normal; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
 }
 
-/* Раскрытое состояние */
+
 .article-item.expanded .article-content {
-    max-height: 1000px; /* Достаточно большое значение для контента */
+    max-height: none; 
+    height: auto;
 }
 
 .article-item.expanded .expand-icon {

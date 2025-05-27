@@ -1,30 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const articleItems = document.querySelectorAll('.article-item');
+    const articles = document.querySelectorAll('.article-item');
     
-    articleItems.forEach(item => {
-        const header = item.querySelector('.article-header');
+    articles.forEach(article => {
+        const content = article.querySelector('.article-content');
+        const initialHeight = content.scrollHeight + "px";
         
-        header.addEventListener('click', function() {
-            // Переключаем класс expanded у родительского элемента
-            item.classList.toggle('expanded');
-            
-            // Закрываем другие открытые статьи (опционально)
-            if (item.classList.contains('expanded')) {
-                articleItems.forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('expanded')) {
-                        otherItem.classList.remove('expanded');
+        content.style.maxHeight = '0';
+        
+        article.addEventListener('click', function() {
+            if (this.classList.contains('expanded')) {
+                content.style.maxHeight = '0';
+            } else {
+                content.style.maxHeight = initialHeight;
+               
+                setTimeout(() => {
+                    if (this.classList.contains('expanded')) {
+                        content.style.maxHeight = 'none';
                     }
-                });
+                }, 300);
             }
+            this.classList.toggle('expanded');
         });
-    });
-    
-    // Закрытие статьи при клике вне её области (опционально)
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.article-item')) {
-            articleItems.forEach(item => {
-                item.classList.remove('expanded');
-            });
-        }
     });
 });

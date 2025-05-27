@@ -1,3 +1,4 @@
+/* static/css/profile.css */
 .profile-container {
     max-width: 800px;
     margin: 0 auto;
@@ -57,13 +58,19 @@
 .article-card {
     background: white;
     border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.article-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .article-title {
     margin: 0 0 0.5rem 0;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #293133;
 }
 
@@ -74,13 +81,18 @@
 }
 
 .article-text {
-    margin-bottom: 1rem;
+    white-space: pre-line;
+    margin-bottom: 1.5rem;
     line-height: 1.6;
+    color: #333;
 }
 
 .article-actions {
     display: flex;
     gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
 }
 
 .edit-btn, .delete-btn, .cancel-btn {
@@ -111,26 +123,13 @@
     background-color: #d32f2f;
 }
 
-.cancel-btn {
-    background-color: #666;
-    color: white;
-}
-
-.cancel-btn:hover {
-    background-color: #555;
-}
-
-.no-articles {
-    color: #666;
-    font-style: italic;
-}
-
 .edit-form {
     display: none;
-    margin-top: 1rem;
-    padding: 1rem;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
     background: #f9f9f9;
-    border-radius: 4px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
 }
 
 .edit-form.active {
@@ -139,22 +138,46 @@
 
 .edit-form textarea {
     width: 100%;
-    min-height: 150px;
-    padding: 0.5rem;
+    min-height: 200px;
+    padding: 1rem;
     margin-bottom: 1rem;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
 }
 
 .edit-form input[type="text"] {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.75rem;
     margin-bottom: 1rem;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
 
 .form-actions {
     display: flex;
     gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+.no-articles {
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem;
+    background: #f9f9f9;
+    border-radius: 8px;
 }
