@@ -93,13 +93,11 @@ def article_delete(request, article_id):
 
 
 
-def article_edit(request, article_id):
-    article = get_object_or_404(Articles, id=article_id, author=request.user)  
-    
+def article_update(request, pk):
+    article = get_object_or_404(Articles, pk=pk, author=request.user)
     if request.method == 'POST':
-        article.name = request.POST.get('title')
-        article.content = request.POST.get('content')
+        article.name = request.POST.get('name')
+        article.content = request.POST.get('text')
         article.save()
         return redirect('profile')
-    
-    return render(request, 'edit_article.html', {'article': article})
+    return redirect('profile')

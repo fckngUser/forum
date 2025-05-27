@@ -16,47 +16,63 @@ h1 {
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 .article-item {
     background: white;
     border-radius: 8px;
-    padding: 25px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
 }
 
 .article-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.article-item h3 {
-    color: #000;
-    margin-top: 0;
-    margin-bottom: 15px;
+.article-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.article-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #333;
+}
+
+.expand-icon {
     font-size: 1.5rem;
-    word-break: break-word;
+    font-weight: bold;
+    transition: transform 0.3s ease;
 }
 
-.article-item p {
+.article-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 10px;
+}
+
+.article-text {
     color: #555;
     line-height: 1.6;
-    margin-bottom: 15px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    padding: 10px 0;
+    margin: 0;
 }
 
+/* Раскрытое состояние */
+.article-item.expanded .article-content {
+    max-height: 1000px; /* Достаточно большое значение для контента */
+}
 
-.article-item p.expanded {
-    -webkit-line-clamp: unset;
-    max-height: none;
-    display: block;
+.article-item.expanded .expand-icon {
+    transform: rotate(45deg);
 }
 
 .empty-message {
@@ -72,8 +88,8 @@ h1 {
     h1 {
         font-size: 2rem;
     }
-
-    .article-item {
-        padding: 15px;
+    
+    .article-header h3 {
+        font-size: 1.1rem;
     }
 }

@@ -8,18 +8,21 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/main_page.js' %}"></script>
+<script src="{% static 'js/main_page.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
-
 <div class="articles-container">
     <h1>Все статьи</h1>
     <ul class="articles-list">
         {% for article in articles %}
-        <li class="article-item">
-            <h3>{{ article.name }}</h3>
-            <p>{{ article.content|truncatechars:100 }}</p>
+        <li class="article-item" data-article-id="{{ article.id }}">
+            <div class="article-header">
+                <h3>{{ article.name }}</h3>
+            </div>
+            <div class="article-content">
+                <p class="article-text">{{ article.content }}</p>
+            </div>
         </li>
         {% empty %}
         <li class="empty-message">Статей пока нет</li>

@@ -5,6 +5,72 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<style>
+    .article-text {
+        white-space: pre-line;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+    
+    .edit-form {
+        display: none;
+        margin-top: 1rem;
+        padding: 1.5rem;
+        background: #f5f5f5;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+    }
+    
+    .edit-form.active {
+        display: block;
+    }
+    
+    .edit-form textarea {
+        width: 100%;
+        min-height: 200px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 1rem;
+        resize: vertical;
+    }
+    
+    .edit-form input[type="text"] {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+    
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+    }
+    
+    .cancel-btn {
+        background-color: #6c757d;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .cancel-btn:hover {
+        background-color: #5a6268;
+    }
+    
+    .article-content {
+        margin-bottom: 1rem;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -24,15 +90,32 @@
         <h2>Мои статьи</h2>
         <div class="articles-list">
             {% for article in user_articles %}
-            <div class="article-card">
-                <h3 class="article-title">{{ article.name }}</h3>
-                <p class="article-date">{{ article.created_at|date:"d.m.Y H:i" }}</p>
+            <div class="article-card" id="article-{{ article.id }}">
+                <div class="article-content" id="content-{{ article.id }}">
+                    <h3 class="article-title">{{ article.name }}</h3>
+                    <p class="article-date">{{ article.created_at|date:"d.m.Y H:i" }}</p>
+                    <div class="article-text">{{ article.text }}</div>
+                </div>
+                
                 <div class="article-actions">
+                    <button class="edit-btn" onclick="toggleEditForm({{ article.id }})">Редактировать</button>
                     <form action="{% url 'article_delete' article.id %}" method="post" class="delete-form">
                         {% csrf_token %}
                         <button type="submit" class="delete-btn" onclick="return confirm('Вы уверены, что хотите удалить эту статью?')">
                             Удалить
                         </button>
+                    </form>
+                </div>
+                
+                <div class="edit-form" id="edit-form-{{ article.id }}">
+                    <form method="post" action="{% url 'article_update' article.id %}">
+                        {% csrf_token %}
+                        <input type="text" name="name" value="{{ article.name }}" required placeholder="Название статьи">
+                        <textarea name="text" required placeholder="Содержание статьи">{{ article.content }}</textarea>
+                        <div class="form-actions">
+                            <button type="submit" class="edit-btn">Сохранить изменения</button>
+                            <button type="button" class="cancel-btn" onclick="toggleEditForm({{ article.id }})">Отменить</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -42,4 +125,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    function toggleEditForm(articleId) {
+        const form = document.getElementById(`edit-form-${articleId}`);
+        const content = document.getElementById(`content-${articleId}`);
+        
+        form.classList.toggle('active');
+        content.style.display = content.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
 {% endblock %}
