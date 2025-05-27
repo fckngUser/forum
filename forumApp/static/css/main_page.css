@@ -96,3 +96,13 @@ h1 {
         font-size: 1.1rem;
     }
 }
+
+.article-author {
+    color: #3a3838;
+    line-height: 1.6;
+    padding: 10px 0;
+    margin: 0;
+    white-space: normal; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+}
